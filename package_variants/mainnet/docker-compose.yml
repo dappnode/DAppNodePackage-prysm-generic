@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  beacon-chain:
+    build:
+      args:
+        NETWORK: mainnet
+        P2P_TCP_PORT: 13103
+        P2P_UDP_PORT: 12103
+    ports:
+      - 13103:13103/tcp
+      - 12103:12103/udp
+    environment:
+      CORSDOMAIN: "http://prysm.dappnode"
+  validator:
+    build:
+      args:
+        NETWORK: mainnet
+        BEACON_RPC_PROVIDER: "beacon-chain.prysm.dappnode:4000"
+        BEACON_RPC_GATEWAY_PROVIDER: "beacon-chain.prysm.dappnode:3500"

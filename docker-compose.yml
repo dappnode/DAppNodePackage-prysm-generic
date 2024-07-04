@@ -1,0 +1,37 @@
+version: "3.5"
+services:
+  beacon-chain:
+    build:
+      context: beacon-chain
+      args:
+        UPSTREAM_VERSION: v5.0.4
+        STAKER_SCRIPTS_VERSION: v0.1.0
+    volumes:
+      - "beacon-chain-data:/data"
+    restart: unless-stopped
+    environment:
+      CHECKPOINT_SYNC_URL: ""
+      EXTRA_OPTS: ""
+      FEE_RECIPIENT: ""
+      VERBOSITY: info
+      MIN_SYNC_PEERS: "3"
+      MAX_PEERS: "70"
+      SUBSCRIBE_ALL_SUBNETS: "false"
+  validator:
+    build:
+      context: validator
+      args:
+        UPSTREAM_VERSION: v5.0.4
+        STAKER_SCRIPTS_VERSION: v0.1.0
+    volumes:
+      - "validator-data:/root/"
+    restart: unless-stopped
+    environment:
+      LOG_TYPE: INFO
+      GRAFFITI: validating_from_DAppNode
+      EXTRA_OPTS: ""
+      FEE_RECIPIENT: ""
+      VERBOSITY: info
+volumes:
+  beacon-chain-data: {}
+  validator-data: {}

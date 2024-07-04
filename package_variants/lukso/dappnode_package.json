@@ -1,0 +1,16 @@
+{
+  "name": "prysm-lukso.dnp.dappnode.eth",
+  "version": "0.1.1",
+  "links": {
+    "ui": "http://brain.web3signer-lukso.dappnode",
+    "homepage": "https://prysmaticlabs.com/",
+    "readme": "https://github.com/dappnode/DAppNodePackage-prysm-generic",
+    "docs": "https://docs.prylabs.network/docs/getting-started"
+  },
+  "globalEnvs": [
+    {
+      "envs": ["EXECUTION_CLIENT_LUKSO"],
+      "services": ["beacon-chain"]
+    }
+  ]
+}
