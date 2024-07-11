@@ -6,6 +6,7 @@ services:
       args:
         UPSTREAM_VERSION: v5.0.4
         STAKER_SCRIPTS_VERSION: v0.1.0
+        DATA_DIR: /data
     volumes:
       - "beacon-chain-data:/data"
     restart: unless-stopped
@@ -23,6 +24,7 @@ services:
       args:
         UPSTREAM_VERSION: v5.0.4
         STAKER_SCRIPTS_VERSION: v0.1.0
+        DATA_DIR: /root/
     volumes:
       - "validator-data:/root/"
     restart: unless-stopped

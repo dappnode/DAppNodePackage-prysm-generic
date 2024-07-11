@@ -1,4 +1,7 @@
 ARG UPSTREAM_VERSION
+FROM debian:bullseye-slim AS builder
+
+ARG UPSTREAM_VERSION
 FROM gcr.io/prysmaticlabs/prysm/validator:${UPSTREAM_VERSION}
 
 ARG NETWORK
@@ -6,12 +9,14 @@ ARG STAKER_SCRIPTS_VERSION
 ARG DATA_DIR=/root/.eth2validators
 ARG WALLET_DIR=/root/.eth2validators/prysm-wallet-v2
 
+COPY --from=builder /bin/sh /bin/sh
+
 RUN mkdir -p ${WALLET_DIR}
 
 COPY auth-token ${WALLET_DIR}/auth-token
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-ENV VALIDATOR_PORT=3500 \
+ENV VALIDATOR_API_PORT=3500 \
   DATA_DIR=${DATA_DIR} \
   WALLET_DIR=${WALLET_DIR} \
   NETWORK=${NETWORK} \

@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  beacon-chain:
+    build:
+      args:
+        NETWORK: sepolia
+        P2P_TCP_PORT: 19114
+    ports:
+      - 19114:19114/tcp
+      - 19114:19114/udp
+    environment:
+      CORSDOMAIN: "http://prysm-sepolia.dappnode"
+  validator:
+    build:
+      args:
+        NETWORK: sepolia
+        BEACON_RPC_PROVIDER: "beacon-chain.prysm-sepolia.dappnode:4000"
+        BEACON_RPC_GATEWAY_PROVIDER: "beacon-chain.prysm-sepolia.dappnode:3500"

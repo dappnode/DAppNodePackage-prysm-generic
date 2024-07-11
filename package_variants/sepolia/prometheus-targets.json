@@ -1,0 +1,20 @@
+[
+    {
+        "labels": {
+            "package": "prysm-sepolia.dnp.dappnode.eth",
+            "service": "beacon-chain.prysm-sepolia.dappnode"
+        },
+        "targets": [
+            "beacon-chain.prysm-sepolia.dappnode:8080"
+        ]
+    },
+    {
+        "labels": {
+            "package": "prysm-sepolia.dnp.dappnode.eth",
+            "service": "validator.prysm-sepolia.dappnode"
+        },
+        "targets": [
+            "validator.prysm-sepolia.dappnode:8081"
+        ]
+    }
+]
