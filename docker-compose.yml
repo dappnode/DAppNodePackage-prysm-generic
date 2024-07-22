@@ -24,9 +24,9 @@ services:
       args:
         UPSTREAM_VERSION: v5.0.4
         STAKER_SCRIPTS_VERSION: v0.1.0
-        DATA_DIR: /root/
+        DATA_DIR: /root/.eth2validators
     volumes:
-      - "validator-data:/root/"
+      - "validator-data:/root/.eth2validators"
     restart: unless-stopped
     environment:
       LOG_TYPE: INFO

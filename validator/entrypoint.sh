@@ -1,65 +1,56 @@
 #!/bin/sh
 
 SUPPORTED_NETWORKS="sepolia lukso holesky mainnet"
-MEVBOOST_FLAG="--enable-builder"
+MEVBOOST_FLAG_KEY="--enable-builder"
 SKIP_MEVBOOST_URL="true"
 CLIENT="prysm"
 
-handle_network() {
-    case "$NETWORK" in
-    "holesky")
-        flags_to_set="--holesky"
-        ;;
-    "lukso")
-        flags_to_set="--chain-config-file=${LUKSO_CONFIG_PATH}"
-        ;;
-    "mainnet")
-        flags_to_set="--mainnet"
-        ;;
-    "sepolia")
-        flags_to_set="--sepolia"
-        ;;
-    *)
-        echo "[ERROR - entrypoint] Unsupported network: $NETWORK"
-        exit 1
-        ;;
-    esac
+# shellcheck disable=SC1091
+. /etc/profile.d/consensus_tools.sh
 
-    set_validator_config_by_network "${NETWORK}" "${SUPPORTED_NETWORKS}" "${CLIENT}" "$flags_to_set"
+VALID_GRAFFITI=$(get_valid_graffiti "${GRAFFITI}")
+VALID_FEE_RECIPIENT=$(get_valid_fee_recipient "${FEE_RECIPIENT}")
+SIGNER_API_URL=$(get_signer_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}")
+BEACON_API_URL=$(get_beacon_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}" "${CLIENT}")
+MEVBOOST_FLAG=$(get_mevboost_flag "${MEVBOOST_FLAG_KEY}" "${SKIP_MEVBOOST_URL}")
 
-}
+BEACON_API_4000="$(echo "$BEACON_API_URL" | cut -d':' -f1,2):4000"
 
-get_beacon_rpc_url() {
+case "$NETWORK" in
+"holesky")
+    NETWORK_FLAGS="--holesky"
+    ;;
+"lukso")
+    NETWORK_FLAGS="--chain-config-file=${LUKSO_CONFIG_PATH}"
+    ;;
+"mainnet")
+    NETWORK_FLAGS="--mainnet"
+    ;;
+"sepolia")
+    NETWORK_FLAGS="--sepolia"
+    ;;
+*)
+    echo "[ERROR - entrypoint] Unsupported network: $NETWORK"
+    exit 1
+    ;;
+esac
 
-    beacon_domain_and_protocol=$(echo "$BEACON_API_URL" | cut -d':' -f1,2)
+echo "[INFO - entrypoint] Running validator service"
 
-    BEACON_RPC_4000="${beacon_domain_and_protocol}:4000"
-}
-
-run_validator() {
-    echo "[INFO - entrypoint] Running validator service"
-
-    # shellcheck disable=SC2086
-    exec /validator \
-        --datadir="${DATA_DIR}" \
-        --wallet-dir="${WALLET_DIR}" \
-        --monitoring-host 0.0.0.0 \
-        --beacon-rpc-provider="${BEACON_API_URL}" \
-        --beacon-rpc-gateway-provider="${BEACON_RPC_4000}" \
-        --validators-external-signer-url="${WEB3SIGNER_API_URL}" \
-        --grpc-gateway-host=0.0.0.0 \
-        --grpc-gateway-port="${VALIDATOR_API_PORT}" \
-        --grpc-gateway-corsdomain=http://0.0.0.0:"${VALIDATOR_API_PORT}" \
-        --graffiti="${GRAFFITI}" \
-        --suggested-fee-recipient="${FEE_RECIPIENT}" \
-        --verbosity="${VERBOSITY}" \
-        --web \
-        --accept-terms-of-use \
-        --enable-doppelganger ${EXTRA_OPTS}
-}
-
-format_graffiti
-handle_network
-get_beacon_rpc_url
-set_mevboost_flag "${MEVBOOST_FLAG}" "${SKIP_MEVBOOST_URL}"
-run_validator
+# shellcheck disable=SC2086
+exec /validator \
+    --datadir="${DATA_DIR}" \
+    --wallet-dir="${WALLET_DIR}" \
+    --monitoring-host 0.0.0.0 \
+    --beacon-rpc-provider="${BEACON_API_4000}" \
+    --beacon-rpc-gateway-provider="${BEACON_API_URL}" \
+    --validators-external-signer-url="${SIGNER_API_URL}" \
+    --grpc-gateway-host=0.0.0.0 \
+    --grpc-gateway-port="${VALIDATOR_API_PORT}" \
+    --grpc-gateway-corsdomain=http://0.0.0.0:"${VALIDATOR_API_PORT}" \
+    --graffiti="${VALID_GRAFFITI}" \
+    --suggested-fee-recipient="${VALID_FEE_RECIPIENT}" \
+    --verbosity="${VERBOSITY}" \
+    --web \
+    --accept-terms-of-use \
+    --enable-doppelganger ${NETWORK_FLAGS} ${MEVBOOST_FLAG} ${EXTRA_OPTS}
