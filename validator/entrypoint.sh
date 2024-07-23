@@ -14,7 +14,8 @@ SIGNER_API_URL=$(get_signer_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}")
 BEACON_API_URL=$(get_beacon_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}" "${CLIENT}")
 MEVBOOST_FLAG=$(get_mevboost_flag "${MEVBOOST_FLAG_KEY}" "${SKIP_MEVBOOST_URL}")
 
-BEACON_API_4000="$(echo "$BEACON_API_URL" | cut -d':' -f1,2):4000"
+# Extract the hostname from BEACON_API_URL and append port 4000
+BEACON_API_4000="$(echo "$BEACON_API_URL" | cut -d'/' -f3 | cut -d':' -f1):4000"
 
 case "$NETWORK" in
 "holesky")
