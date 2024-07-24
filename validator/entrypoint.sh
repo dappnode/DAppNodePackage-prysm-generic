@@ -14,7 +14,13 @@ SIGNER_API_URL=$(get_signer_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}")
 BEACON_API_URL=$(get_beacon_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}" "${CLIENT}")
 MEVBOOST_FLAG=$(get_mevboost_flag "${MEVBOOST_FLAG_KEY}" "${SKIP_MEVBOOST_URL}")
 
-BEACON_API_4000="$(echo "$BEACON_API_URL" | cut -d':' -f1,2):4000"
+# Extract base URL. This assumes BEACON_API_URL will has the following format: http://<domain>:<port> 
+# Example: http://localhost:4000 -> localhost
+BEACON_DOMAIN="$(echo "$BEACON_API_URL" | cut -d'/' -f3 | cut -d':' -f1)"
+
+# Prepare API endpoints (no http:// prefix && add port)
+BEACON_RPC_PROVIDER="${BEACON_DOMAIN}:4000"
+BEACON_RPC_GATEWAY_PROVIDER="${BEACON_DOMAIN}:3500"
 
 case "$NETWORK" in
 "holesky")
@@ -42,8 +48,8 @@ exec /validator \
     --datadir="${DATA_DIR}" \
     --wallet-dir="${WALLET_DIR}" \
     --monitoring-host 0.0.0.0 \
-    --beacon-rpc-provider="${BEACON_API_4000}" \
-    --beacon-rpc-gateway-provider="${BEACON_API_URL}" \
+    --beacon-rpc-provider="${BEACON_RPC_PROVIDER}" \
+    --beacon-rpc-gateway-provider="${BEACON_RPC_GATEWAY_PROVIDER}" \
     --validators-external-signer-url="${SIGNER_API_URL}" \
     --grpc-gateway-host=0.0.0.0 \
     --grpc-gateway-port="${VALIDATOR_API_PORT}" \
