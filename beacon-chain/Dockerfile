@@ -33,8 +33,6 @@ ENV JWT_FILE_PATH=/jwtsecret.hex \
     P2P_UDP_PORT=${P2P_UDP_PORT} \
     DATA_DIR=${DATA_DIR} \
     LUKSO_CONFIG_PATH=/configs/lukso \
-    LUKSO_GENESIS_FILE_PATH=${LUKSO_CONFIG_PATH}/genesis.ssz \
-    LUKSO_CHAIN_CONFIG_FILE_PATH=${LUKSO_CONFIG_PATH}/config.yaml \
     STAKER_SCRIPTS_URL=https://github.com/dappnode/staker-package-scripts/releases/download/${STAKER_SCRIPTS_VERSION}
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -51,6 +49,8 @@ RUN chmod +rx /usr/local/bin/entrypoint.sh /etc/profile.d/consensus_tools.sh
 
 # This env changes the variant
 # Placed at the end to regenerate the least amount of layers
-ENV NETWORK=${NETWORK}
+ENV NETWORK=${NETWORK} \
+    LUKSO_GENESIS_FILE_PATH=${LUKSO_CONFIG_PATH}/genesis.ssz \
+    LUKSO_CHAIN_CONFIG_FILE_PATH=${LUKSO_CONFIG_PATH}/config.yaml
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
