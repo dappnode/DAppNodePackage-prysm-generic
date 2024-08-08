@@ -4,8 +4,10 @@ FROM debian:bullseye-slim AS builder
 ARG NETWORK
 
 # Use ldd to copy dependencies of grep
-RUN mkdir /deps
-RUN ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /deps || true
+RUN mkdir /deps && \
+    ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /deps || true && \
+    apt-get update && \
+    apt-get --yes install wget
 
 ENV LUKSO_CONFIG_PATH=/configs/lukso \
     LUKSO_SHARED_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared
