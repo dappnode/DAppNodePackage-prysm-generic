@@ -1,6 +1,5 @@
 #!/bin/sh
 
-SUPPORTED_NETWORKS="sepolia lukso holesky mainnet"
 CHECKPOINT_SYNC_FLAG_KEY_1="--checkpoint-sync-url"
 CHECKPOINT_SYNC_FLAG_KEY_2="--genesis-beacon-api-url"
 MEVBOOST_FLAG_KEY="--http-mev-relay"
@@ -8,9 +7,12 @@ MEVBOOST_FLAG_KEY="--http-mev-relay"
 # shellcheck disable=SC1091 # Path is relative to the Dockerfile
 . /etc/profile.d/consensus_tools.sh
 
-ENGINE_URL=$(get_engine_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}")
+ENGINE_URL="http://execution.${NETWORK}.staker.dappnode:8551"
 VALID_FEE_RECIPIENT=$(get_valid_fee_recipient "${FEE_RECIPIENT}")
 MEVBOOST_FLAG=$(get_mevboost_flag "${NETWORK}" "${MEVBOOST_FLAG_KEY}")
+
+JWT_SECRET=$(get_jwt_secret_by_network "${NETWORK}")
+echo "${JWT_SECRET}" >"${JWT_FILE_PATH}"
 
 # To avoid failure for users who have added fee recipient to extra opts
 EXTRA_OPTS=$(add_flag_to_extra_opts_safely "${EXTRA_OPTS}" "--suggested-fee-recipient=${VALID_FEE_RECIPIENT}")
