@@ -15,6 +15,8 @@ ENV LUKSO_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-con
 
 RUN if [ "${NETWORK}" = "lukso" ]; then \
   wget ${LUKSO_CONFIG_URL} -O /lukso-config.yaml; \
+  else \
+  touch /lukso-config.yaml; \
   fi
 
 ARG UPSTREAM_VERSION
