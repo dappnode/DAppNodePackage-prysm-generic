@@ -5,6 +5,7 @@ services:
       args:
         NETWORK: sepolia
         P2P_TCP_PORT: 19114
+        P2P_UDP_PORT: 19114
     ports:
       - 19114:19114/tcp
       - 19114:19114/udp
