@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$NETWORK" = "sepolia" ]; then
+    echo "[INFO - entrypoint] sepolia network does not require validator service"
+    exit 0
+fi
+
 SUPPORTED_NETWORKS="sepolia lukso holesky mainnet"
 MEVBOOST_FLAG_KEY="--enable-builder"
 SKIP_MEVBOOST_URL="true"
@@ -14,7 +19,7 @@ SIGNER_API_URL=$(get_signer_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}")
 BEACON_API_URL=$(get_beacon_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}" "${CLIENT}")
 MEVBOOST_FLAG=$(get_mevboost_flag "${MEVBOOST_FLAG_KEY}" "${SKIP_MEVBOOST_URL}")
 
-# Extract base URL. This assumes BEACON_API_URL will has the following format: http://<domain>:<port> 
+# Extract base URL. This assumes BEACON_API_URL will has the following format: http://<domain>:<port>
 # Example: http://localhost:4000 -> localhost
 BEACON_DOMAIN="$(echo "$BEACON_API_URL" | cut -d'/' -f3 | cut -d':' -f1)"
 

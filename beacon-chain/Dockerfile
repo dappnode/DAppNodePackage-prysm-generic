@@ -10,12 +10,17 @@ RUN mkdir /deps && \
     apt-get --yes install wget
 
 ENV LUKSO_CONFIG_PATH=/configs/lukso \
-    LUKSO_SHARED_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared
+    LUKSO_SHARED_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared \
+    SEPOLIA_CONFIG_PATH=/configs/sepolia \
+    SEPOLIA_GENESIS_URL=https://raw.githubusercontent.com/eth-clients/sepolia/main/metadata/genesis.ssz
 
-RUN mkdir -p ${LUKSO_CONFIG_PATH} && \
+
+RUN mkdir -p ${LUKSO_CONFIG_PATH} ${SEPOLIA_CONFIG_PATH} && \
     if [ "${NETWORK}" = "lukso" ]; then \
     wget ${LUKSO_SHARED_CONFIG_URL}/genesis.ssz -O ${LUKSO_CONFIG_PATH}/genesis.ssz && \
     wget ${LUKSO_SHARED_CONFIG_URL}/config.yaml -O ${LUKSO_CONFIG_PATH}/config.yaml; \
+    elif [ "${NETWORK}" = "sepolia" ]; then \
+    wget ${SEPOLIA_GENESIS_URL} -O ${SEPOLIA_CONFIG_PATH}/genesis.ssz; \
     fi
 
 ARG UPSTREAM_VERSION
@@ -32,7 +37,7 @@ ENV JWT_FILE_PATH=/jwtsecret.hex \
     P2P_TCP_PORT=${P2P_TCP_PORT} \
     P2P_UDP_PORT=${P2P_UDP_PORT} \
     DATA_DIR=${DATA_DIR} \
-    LUKSO_CONFIG_PATH=/configs/lukso \
+    CONFIGS_PATH=/configs \
     STAKER_SCRIPTS_URL=https://github.com/dappnode/staker-package-scripts/releases/download/${STAKER_SCRIPTS_VERSION}
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -50,7 +55,8 @@ RUN chmod +rx /usr/local/bin/entrypoint.sh /etc/profile.d/consensus_tools.sh
 # This env changes the variant
 # Placed at the end to regenerate the least amount of layers
 ENV NETWORK=${NETWORK} \
-    LUKSO_GENESIS_FILE_PATH=${LUKSO_CONFIG_PATH}/genesis.ssz \
-    LUKSO_CHAIN_CONFIG_FILE_PATH=${LUKSO_CONFIG_PATH}/config.yaml
+    SEPOLIA_GENESIS_FILE_PATH=${CONFIGS_PATH}/sepolia/genesis.ssz \
+    LUKSO_GENESIS_FILE_PATH=${CONFIGS_PATH}/lukso/genesis.ssz \
+    LUKSO_CHAIN_CONFIG_FILE_PATH=${CONFIGS_PATH}/lukso/config.yaml
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

@@ -42,9 +42,17 @@ case "$NETWORK" in
 esac
 
 # Check if network is lukso and checkpoint sync url is empty
-if [ "${NETWORK}" = "lukso" ] && [ -z "${CHECKPOINT_SYNC_URL}" ]; then
-  echo "[INFO - entrypoint] Syncing LUKSO chain from genesis"
-  EXTRA_OPTS=$(add_flag_to_extra_opts_safely "${EXTRA_OPTS}" "--genesis-state=${LUKSO_GENESIS_FILE_PATH}")
+if [ -z "${CHECKPOINT_SYNC_URL}" ]; then
+
+  if [ "${NETWORK}" = "lukso" ]; then
+    echo "[INFO - entrypoint] Syncing LUKSO chain from genesis"
+    EXTRA_OPTS=$(add_flag_to_extra_opts_safely "${EXTRA_OPTS}" "--genesis-state=${LUKSO_GENESIS_FILE_PATH}")
+
+  elif [ "${NETWORK}" = "sepolia" ]; then
+    echo "[INFO - entrypoint] Syncing sepolia chain from genesis"
+    EXTRA_OPTS=$(add_flag_to_extra_opts_safely "${EXTRA_OPTS}" "--genesis-state=${SEPOLIA_GENESIS_FILE_PATH}")
+  fi
+
 else
   # Prysm needs these 2 flags to be set for checkpoint sync
   checkpoint_flag_1=$(get_checkpoint_sync_flag "${CHECKPOINT_SYNC_FLAG_KEY_1}" "${CHECKPOINT_SYNC_URL}")

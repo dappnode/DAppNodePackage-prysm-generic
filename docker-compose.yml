@@ -27,7 +27,7 @@ services:
         DATA_DIR: /root/.eth2validators
     volumes:
       - "validator-data:/root/.eth2validators"
-    restart: unless-stopped
+    restart: on-failure
     environment:
       LOG_TYPE: INFO
       GRAFFITI: validating_from_DAppNode
