@@ -8,6 +8,11 @@ MEVBOOST_FLAG_KEY="--http-mev-relay"
 . /etc/profile.d/consensus_tools.sh
 
 ENGINE_URL="http://execution.${NETWORK}.staker.dappnode:8551"
+
+if [ "$NETWORK" = "sepolia" ]; then
+  ENGINE_URL="http://sepolia-geth.dappnode:8551"
+fi
+
 VALID_FEE_RECIPIENT=$(get_valid_fee_recipient "${FEE_RECIPIENT}")
 MEVBOOST_FLAG=$(get_mevboost_flag "${NETWORK}" "${MEVBOOST_FLAG_KEY}")
 
