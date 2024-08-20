@@ -4,11 +4,11 @@ services:
     build:
       context: beacon-chain
       args:
-        UPSTREAM_VERSION: v5.0.4
+        UPSTREAM_VERSION: v5.1.0
         STAKER_SCRIPTS_VERSION: v0.1.0
         DATA_DIR: /data
     volumes:
-      - "beacon-chain-data:/data"
+      - beacon-chain-data:/data
     restart: unless-stopped
     environment:
       CHECKPOINT_SYNC_URL: ""
@@ -22,11 +22,11 @@ services:
     build:
       context: validator
       args:
-        UPSTREAM_VERSION: v5.0.4
+        UPSTREAM_VERSION: v5.1.0
         STAKER_SCRIPTS_VERSION: v0.1.0
         DATA_DIR: /root/.eth2validators
     volumes:
-      - "validator-data:/root/.eth2validators"
+      - validator-data:/root/.eth2validators
     restart: on-failure
     environment:
       LOG_TYPE: INFO
