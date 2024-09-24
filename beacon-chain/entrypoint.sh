@@ -61,22 +61,23 @@ else
   CHECKPOINT_SYNC_FLAGS="${checkpoint_flag_1} ${checkpoint_flag_2}"
 fi
 
-echo "[INFO - entrypoint] Running beacon service"
-
-# shellcheck disable=SC2086
-exec /beacon-chain \
-  --accept-terms-of-use \
-  --datadir=${DATA_DIR} \
-  --jwt-secret="${JWT_FILE_PATH}" \
-  --execution-endpoint="${ENGINE_URL}" \
+FLAGS="--accept-terms-of-use \
+  --datadir=$DATA_DIR \
+  --jwt-secret=$JWT_FILE_PATH \
+  --execution-endpoint=$ENGINE_URL \
   --monitoring-host=0.0.0.0 \
   --grpc-gateway-host=0.0.0.0 \
-  --grpc-gateway-port="${BEACON_API_PORT}" \
-  --grpc-gateway-corsdomain="${CORSDOMAIN}" \
+  --grpc-gateway-port=$BEACON_API_PORT \
+  --grpc-gateway-corsdomain=$CORSDOMAIN \
   --rpc-host=0.0.0.0 \
-  --verbosity="${VERBOSITY}" \
-  --p2p-tcp-port="${P2P_TCP_PORT}" \
-  --p2p-udp-port="${P2P_UDP_PORT}" \
-  --p2p-max-peers="${MAX_PEERS}" \
-  --min-sync-peers="${MIN_SYNC_PEERS}" \
-  --subscribe-all-subnets="${SUBSCRIBE_ALL_SUBNETS}" ${NETWORK_FLAGS} ${CHECKPOINT_SYNC_FLAGS} ${MEVBOOST_FLAG} ${EXTRA_OPTS}
+  --verbosity=$VERBOSITY \
+  --p2p-tcp-port=$P2P_TCP_PORT \
+  --p2p-udp-port=$P2P_UDP_PORT \
+  --p2p-max-peers=$MAX_PEERS \
+  --min-sync-peers=$MIN_SYNC_PEERS \
+  --subscribe-all-subnets=$SUBSCRIBE_ALL_SUBNETS $NETWORK_FLAGS $CHECKPOINT_SYNC_FLAGS $MEVBOOST_FLAG $EXTRA_OPTS"
+
+echo "[INFO - entrypoint] Starting beacon with flags: $FLAGS"
+
+# shellcheck disable=SC2086
+exec /beacon-chain $FLAGS

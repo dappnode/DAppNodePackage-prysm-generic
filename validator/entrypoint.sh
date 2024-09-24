@@ -46,22 +46,23 @@ case "$NETWORK" in
     ;;
 esac
 
-echo "[INFO - entrypoint] Running validator service"
-
-# shellcheck disable=SC2086
-exec /validator \
-    --datadir="${DATA_DIR}" \
-    --wallet-dir="${WALLET_DIR}" \
-    --monitoring-host 0.0.0.0 \
-    --beacon-rpc-provider="${BEACON_RPC_PROVIDER}" \
-    --beacon-rpc-gateway-provider="${BEACON_RPC_GATEWAY_PROVIDER}" \
-    --validators-external-signer-url="${SIGNER_API_URL}" \
+FLAGS="--datadir=$DATA_DIR \
+    --wallet-dir=$WALLET_DIR \
+    --monitoring-host=0.0.0.0 \
+    --beacon-rpc-provider=$BEACON_RPC_PROVIDER \
+    --beacon-rpc-gateway-provider=$BEACON_RPC_GATEWAY_PROVIDER \
+    --validators-external-signer-url=$SIGNER_API_URL \
     --grpc-gateway-host=0.0.0.0 \
-    --grpc-gateway-port="${VALIDATOR_API_PORT}" \
-    --grpc-gateway-corsdomain=http://0.0.0.0:"${VALIDATOR_API_PORT}" \
-    --graffiti="${VALID_GRAFFITI}" \
-    --suggested-fee-recipient="${VALID_FEE_RECIPIENT}" \
-    --verbosity="${VERBOSITY}" \
+    --grpc-gateway-port=$VALIDATOR_API_PORT \
+    --grpc-gateway-corsdomain=http://0.0.0.0:$VALIDATOR_API_PORT \
+    --graffiti=$VALID_GRAFFITI \
+    --suggested-fee-recipient=$VALID_FEE_RECIPIENT \
+    --verbosity=$VERBOSITY \
     --web \
     --accept-terms-of-use \
-    --enable-doppelganger ${NETWORK_FLAGS} ${MEVBOOST_FLAG} ${EXTRA_OPTS}
+    --enable-doppelganger ${NETWORK_FLAGS} ${MEVBOOST_FLAG} ${EXTRA_OPTS}"
+
+echo "[INFO - entrypoint] Starting validator with flags: $FLAGS"
+
+# shellcheck disable=SC2086
+exec /validator $FLAGS
