@@ -17,7 +17,7 @@ VALID_GRAFFITI=$(get_valid_graffiti "${GRAFFITI}")
 VALID_FEE_RECIPIENT=$(get_valid_fee_recipient "${FEE_RECIPIENT}")
 SIGNER_API_URL=$(get_signer_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}")
 BEACON_API_URL=$(get_beacon_api_url "${NETWORK}" "${SUPPORTED_NETWORKS}" "${CLIENT}")
-MEVBOOST_FLAG=$(get_mevboost_flag "${MEVBOOST_FLAG_KEY}" "${SKIP_MEVBOOST_URL}")
+MEVBOOST_FLAG=$(get_mevboost_flag "${NETWORK}" "${MEVBOOST_FLAG_KEY}" "${SKIP_MEVBOOST_URL}")
 
 # Extract base URL. This assumes BEACON_API_URL will has the following format: http://<domain>:<port>
 # Example: http://localhost:4000 -> localhost
