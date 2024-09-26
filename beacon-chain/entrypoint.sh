@@ -13,7 +13,7 @@ if [ "$NETWORK" = "sepolia" ]; then
   ENGINE_URL="http://sepolia-geth.dappnode:8551"
 fi
 
-VALID_FEE_RECIPIENT=$(get_valid_fee_recipient "${FEE_RECIPIENT}")
+VALID_FEE_RECIPIENT=$(get_valid_fee_recipient "${FEE_RECIPIENT_ADDRESS}")
 MEVBOOST_FLAG=$(get_mevboost_flag "${NETWORK}" "${MEVBOOST_FLAG_KEY}")
 
 JWT_SECRET=$(get_jwt_secret_by_network "${NETWORK}")
