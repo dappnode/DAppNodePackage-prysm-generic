@@ -6,13 +6,14 @@ services:
         NETWORK: lukso
         P2P_TCP_PORT: 12603
         P2P_UDP_PORT: 12603
+        UPSTREAM_VERSION: v5.0.4
     ports:
       - 12603:12603/tcp
       - 12603:12603/udp
     environment:
       CORSDOMAIN: "http://prysm-lukso.dappnode"
       MIN_SYNC_PEERS: "1"
-      MAX_PEERS: "250"
+      MAX_PEERS: "70"
       SUBSCRIBE_ALL_SUBNETS: "true"
   validator:
     build:
