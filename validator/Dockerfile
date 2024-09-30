@@ -11,7 +11,7 @@ RUN ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /d
   apt-get --yes install wget && \
   apt-get clean
 
-ENV LUKSO_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared/dencun/config.yaml
+ENV LUKSO_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared/config.yaml
 
 RUN if [ "${NETWORK}" = "lukso" ]; then \
   wget ${LUKSO_CONFIG_URL} -O /lukso-config.yaml; \

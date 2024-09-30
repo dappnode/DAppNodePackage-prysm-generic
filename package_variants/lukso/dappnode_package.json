@@ -1,6 +1,6 @@
 {
   "name": "prysm-lukso.dnp.dappnode.eth",
-  "version": "0.1.3",
+  "version": "0.1.2",
   "links": {
     "ui": "http://brain.web3signer-lukso.dappnode",
     "homepage": "https://prysmaticlabs.com/",
@@ -8,6 +8,6 @@
     "docs": "https://docs.prylabs.network/docs/getting-started"
   },
   "optionalDependencies": {
-    "lukso-geth.dnp.dappnode.eth": ">=0.1.4"
+    "lukso-geth.dnp.dappnode.eth": ">=0.1.3"
   }
 }
