@@ -8,6 +8,6 @@
     "docs": "https://docs.prylabs.network/docs/getting-started"
   },
   "optionalDependencies": {
-    "lukso-geth.dnp.dappnode.eth": ">=0.1.4"
+    "lukso-geth.dnp.dappnode.eth": ">=0.1.3"
   }
 }
