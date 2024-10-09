@@ -14,7 +14,7 @@ services:
       CORSDOMAIN: "http://prysm-lukso.dappnode"
       MIN_SYNC_PEERS: "1"
       MAX_PEERS: "70"
-      SUBSCRIBE_ALL_SUBNETS: "true"
+      SUBSCRIBE_ALL_SUBNETS: "false"
   validator:
     build:
       args:
