@@ -18,6 +18,7 @@ services:
   validator:
     build:
       args:
+        UPSTREAM_VERSION: v5.0.4
         NETWORK: lukso
         BEACON_RPC_PROVIDER: "beacon-chain.prysm-lukso.dappnode:4000"
         BEACON_RPC_GATEWAY_PROVIDER: "beacon-chain.prysm-lukso.dappnode:3500"
