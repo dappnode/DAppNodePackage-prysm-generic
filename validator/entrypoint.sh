@@ -60,6 +60,7 @@ FLAGS="--datadir=$DATA_DIR \
     --verbosity=$VERBOSITY \
     --web \
     --accept-terms-of-use \
+    --keymanager-token-file=${WALLET_DIR}/auth-token \
     --enable-doppelganger ${NETWORK_FLAGS} ${MEVBOOST_FLAG} ${EXTRA_OPTS}"
 
 echo "[INFO - entrypoint] Starting validator with flags: $FLAGS"
