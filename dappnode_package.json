@@ -34,7 +34,7 @@
     "url": "https://github.com/dappnode/DAppNodePackage-prysm-generic/issues"
   },
   "requirements": {
-    "minimumDappnodeVersion": "0.2.95"
+    "minimumDappnodeVersion": "0.2.101"
   },
   "categories": ["Blockchain", "ETH2.0"],
   "style": {
