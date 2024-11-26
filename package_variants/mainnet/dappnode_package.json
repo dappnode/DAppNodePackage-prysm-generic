@@ -13,6 +13,9 @@
       "services": ["validator", "beacon-chain"]
     }
   ],
+  "requirements": {
+    "minimumDappnodeVersion": "0.2.101"
+  },
   "optionalDependencies": {
     "geth.dnp.dappnode.eth": ">=0.1.44",
     "besu.public.dappnode.eth": ">=1.2.11",
