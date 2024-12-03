@@ -10,7 +10,7 @@ services:
       - 19114:19114/tcp
       - 19114:19114/udp
     environment:
-      CORSDOMAIN: "http://prysm-sepolia.dappnode"
+      CORSDOMAIN: "*"
   validator:
     build:
       args:

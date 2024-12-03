@@ -11,7 +11,7 @@ services:
       - 12603:12603/tcp
       - 12603:12603/udp
     environment:
-      CORSDOMAIN: "http://prysm-lukso.dappnode"
+      CORSDOMAIN: "*"
       MIN_SYNC_PEERS: "1"
       MAX_PEERS: "70"
       SUBSCRIBE_ALL_SUBNETS: "false"
