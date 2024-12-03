@@ -1,6 +1,6 @@
-# Lodestar Dappnode Package
+# Prysm Dappnode Package
 
-**Lodestar ETH2.0 Beacon chain + validator**
+**Prysm ETH2.0 Beacon chain + validator**
 
 Go Ethereum Consensus Layer Implementation by Prysmatic Labs.
 

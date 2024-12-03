@@ -75,7 +75,8 @@ FLAGS="--accept-terms-of-use \
   --p2p-udp-port=$P2P_UDP_PORT \
   --p2p-max-peers=$MAX_PEERS \
   --min-sync-peers=$MIN_SYNC_PEERS \
-  --subscribe-all-subnets=$SUBSCRIBE_ALL_SUBNETS $NETWORK_FLAGS $CHECKPOINT_SYNC_FLAGS $MEVBOOST_FLAG $EXTRA_OPTS"
+  --subscribe-all-subnets=$SUBSCRIBE_ALL_SUBNETS $NETWORK_FLAGS $CHECKPOINT_SYNC_FLAGS $MEVBOOST_FLAG $EXTRA_OPTS \
+  --grpc-gateway-corsdomain value=*"
 
 echo "[INFO - entrypoint] Starting beacon with flags: $FLAGS"
 
