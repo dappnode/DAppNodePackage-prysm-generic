@@ -10,7 +10,7 @@ services:
       - 14503:14503/tcp
       - 14503:14503/udp
     environment:
-      CORSDOMAIN: "http://prysm-holesky.dappnode"
+      CORSDOMAIN: "*"
   validator:
     build:
       args:
