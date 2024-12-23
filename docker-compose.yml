@@ -31,6 +31,7 @@ services:
       GRAFFITI: validating_from_DAppNode
       EXTRA_OPTS: ""
       FEE_RECIPIENT_ADDRESS: ""
+      BACKUP_BEACON_NODE: ""
       VERBOSITY: info
 volumes:
   beacon-chain-data: {}
