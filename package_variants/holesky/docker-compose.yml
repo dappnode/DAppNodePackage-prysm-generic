@@ -6,6 +6,7 @@ services:
         NETWORK: holesky
         P2P_TCP_PORT: 14503
         P2P_UDP_PORT: 14503
+        UPSTREAM_VERSION: "ethpandaops/prysm-beacon-chain:hackSync-fd41691" # holesky fix, see https://github.com/ethereum/pm/blob/master/Pectra/holesky-postmortem.md#holesky-coordinated-slashings
     ports:
       - 14503:14503/tcp
       - 14503:14503/udp
@@ -17,3 +18,4 @@ services:
         NETWORK: holesky
         BEACON_RPC_PROVIDER: "beacon-chain.prysm-holesky.dappnode:4000"
         BEACON_RPC_GATEWAY_PROVIDER: "beacon-chain.prysm-holesky.dappnode:3500"
+        UPSTREAM_VERSION: "ethpandaops/prysm-beacon-chain:hackSync-fd41691" # holesky fix, see https://github.com/ethereum/pm/blob/master/Pectra/holesky-postmortem.md#holesky-coordinated-slashings

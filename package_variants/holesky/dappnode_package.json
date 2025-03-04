@@ -12,5 +12,12 @@
       "envs": ["MEVBOOST_HOLESKY"],
       "services": ["validator", "beacon-chain"]
     }
+  ],
+  "upstream": [
+    {
+      "repo": "prysmaticlabs/prysm",
+      "version": "ethpandaops/prysm-beacon-chain:hackSync-fd41691",
+      "arg": "UPSTREAM_VERSION"
+    }
   ]
 }
