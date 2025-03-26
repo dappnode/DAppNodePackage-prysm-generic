@@ -1,0 +1,20 @@
+[
+    {
+        "labels": {
+            "package": "prysm-hoodi.dnp.dappnode.eth",
+            "service": "beacon-chain.prysm-hoodi.dappnode"
+        },
+        "targets": [
+            "beacon-chain.prysm-hoodi.dappnode:8080"
+        ]
+    },
+    {
+        "labels": {
+            "package": "prysm-hoodi.dnp.dappnode.eth",
+            "service": "validator.prysm-hoodi.dappnode"
+        },
+        "targets": [
+            "validator.prysm-hoodi.dappnode:8081"
+        ]
+    }
+]
