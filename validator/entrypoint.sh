@@ -5,7 +5,7 @@ if [ "$NETWORK" = "sepolia" ]; then
     exit 0
 fi
 
-SUPPORTED_NETWORKS="sepolia lukso holesky mainnet"
+SUPPORTED_NETWORKS="sepolia lukso holesky hoodi mainnet"
 MEVBOOST_FLAG_KEY="--enable-builder"
 SKIP_MEVBOOST_URL="true"
 CLIENT="prysm"
@@ -30,6 +30,9 @@ BEACON_RPC_GATEWAY_PROVIDER="${BEACON_DOMAIN}:3500"
 case "$NETWORK" in
 "holesky")
     NETWORK_FLAGS="--holesky"
+    ;;
+"hoodi")
+    NETWORK_FLAGS="--hoodi"
     ;;
 "lukso")
     NETWORK_FLAGS="--chain-config-file=${LUKSO_CONFIG_PATH}"
