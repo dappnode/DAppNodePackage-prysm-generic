@@ -4,7 +4,7 @@ services:
     build:
       context: beacon-chain
       args:
-        UPSTREAM_VERSION: v5.3.0
+        UPSTREAM_VERSION: v5.3.2
         STAKER_SCRIPTS_VERSION: v0.1.1
         DATA_DIR: /data
     volumes:
@@ -22,7 +22,7 @@ services:
     build:
       context: validator
       args:
-        UPSTREAM_VERSION: v5.3.0
+        UPSTREAM_VERSION: v5.3.2
         STAKER_SCRIPTS_VERSION: v0.1.1
         DATA_DIR: /root/.eth2validators
     restart: on-failure
