@@ -1,7 +1,7 @@
 endpoints:
   - name: "Hoodi Prysm Node Syncing Check"
     enabled: true
-    group: "ethereum"
+    group: "hoodi"
     url: "http://prysm-hoodi.dappnode:3500/eth/v1/node/syncing"
     method: "GET"
     headers:
@@ -25,7 +25,7 @@ endpoints:
 
   - name: "Hoodi Prysm Node Peers Count Check"
     enabled: true
-    group: "ethereum"
+    group: "hoodi"
     url: "http://prysm-hoodi.dappnode:3500/eth/v1/node/peer_count"
     method: "GET"
     headers:

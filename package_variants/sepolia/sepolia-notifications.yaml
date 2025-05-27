@@ -1,7 +1,7 @@
 endpoints:
   - name: "Sepolia Prysm Node Syncing Check"
     enabled: true
-    group: "ethereum"
+    group: "sepolia"
     url: "http://prysm-sepolia.dappnode:3500/eth/v1/node/syncing"
     method: "GET"
     headers:
@@ -25,7 +25,7 @@ endpoints:
 
   - name: "Sepolia Prysm Node Peers Count Check"
     enabled: true
-    group: "ethereum"
+    group: "sepolia"
     url: "http://prysm-sepolia.dappnode:3500/eth/v1/node/peer_count"
     method: "GET"
     headers:
