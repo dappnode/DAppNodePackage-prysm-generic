@@ -52,7 +52,7 @@ esac
 FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
-    --beacon-rpc-provider=$BEACON_RPC_PROVIDER \
+    --beacon-rpc-provider=$BEACON_RPC_PROVIDER$( [ -n "${BACKUP_BEACON_NODES}" ] && echo ",${BACKUP_BEACON_NODES}" ) \
     --beacon-rpc-gateway-provider=$BEACON_RPC_GATEWAY_PROVIDER \
     --validators-external-signer-url=$SIGNER_API_URL \
     --grpc-gateway-host=0.0.0.0 \
