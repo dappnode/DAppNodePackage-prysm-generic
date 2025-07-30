@@ -1,6 +1,6 @@
 # Prysm Dappnode Package
 
-**Prysm ETH2.0 Beacon chain + validator**
+**Prysm Consensus Client + Validator Client**
 
 Go Ethereum Consensus Layer Implementation by Prysmatic Labs.
 
