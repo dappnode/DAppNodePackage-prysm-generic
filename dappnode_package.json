@@ -11,8 +11,8 @@
       "arg": "STAKER_SCRIPTS_VERSION"
     }
   ],
-  "shortDescription": "Prysm mainnet ETH2.0 Beacon chain + validator",
-  "description": "Validate with Prysm: a Go implementation of the Ethereum 2.0 Serenity protocol and open source project created by Prysmatic Labs.\n\nIt includes a Grafana dashboard for the [DMS](http://my.dappnode/#/installer/dms.dnp.dappnode.eth) thanks to the amazing work of [metanull-operator](https://github.com/metanull-operator/eth2-grafana)",
+  "shortDescription": "Prysm Consensus Client + Validator Client",
+  "description": "Validate with Prysm: a Go implementation for the Ethereum consensus layer and open source project created by Prysmatic Labs.\n\nIt includes a Grafana dashboard for the [DMS](http://my.dappnode/#/installer/dms.dnp.dappnode.eth) thanks to the amazing work of [metanull-operator](https://github.com/metanull-operator/eth2-grafana)",
   "type": "service",
   "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
   "architectures": ["linux/amd64"],
