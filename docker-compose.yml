@@ -32,6 +32,7 @@ services:
       EXTRA_OPTS: ""
       FEE_RECIPIENT_ADDRESS: ""
       VERBOSITY: info
+      BACKUP_BEACON_NODES: ""
 volumes:
   beacon-chain-data: {}
   validator-data: {}
