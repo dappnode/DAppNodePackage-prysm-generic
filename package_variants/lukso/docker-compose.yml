@@ -6,7 +6,7 @@ services:
         NETWORK: lukso
         P2P_TCP_PORT: 12603
         P2P_UDP_PORT: 12603
-        UPSTREAM_VERSION: v5.0.4
+        UPSTREAM_VERSION: v6.0.4
     ports:
       - 12603:12603/tcp
       - 12603:12603/udp
@@ -18,7 +18,7 @@ services:
   validator:
     build:
       args:
-        UPSTREAM_VERSION: v5.0.4
+        UPSTREAM_VERSION: v6.0.4
         NETWORK: lukso
         BEACON_RPC_PROVIDER: "beacon-chain.prysm-lukso.dappnode:4000"
         BEACON_RPC_GATEWAY_PROVIDER: "beacon-chain.prysm-lukso.dappnode:3500"
