@@ -23,9 +23,6 @@ echo "${JWT_SECRET}" >"${JWT_FILE_PATH}"
 EXTRA_OPTS=$(add_flag_to_extra_opts_safely "${EXTRA_OPTS}" "--suggested-fee-recipient=${VALID_FEE_RECIPIENT}")
 
 case "$NETWORK" in
-"holesky")
-  NETWORK_FLAGS="--holesky"
-  ;;
 "hoodi")
   NETWORK_FLAGS="--hoodi"
   ;;
