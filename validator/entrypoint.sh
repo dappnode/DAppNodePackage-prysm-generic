@@ -23,9 +23,9 @@ MEVBOOST_FLAG=$(get_mevboost_flag "${NETWORK}" "${MEVBOOST_FLAG_KEY}" "${SKIP_ME
 # Example: http://localhost:4000 -> localhost
 BEACON_DOMAIN="$(echo "$BEACON_API_URL" | cut -d'/' -f3 | cut -d':' -f1)"
 
-# Prepare API endpoints (no http:// prefix && add port)
+# Prepare API endpoint (no http:// prefix && add port)
 BEACON_RPC_PROVIDER="${BEACON_DOMAIN}:4000"
-BEACON_RPC_GATEWAY_PROVIDER="${BEACON_DOMAIN}:3500"
+BEACON_REST_API_PROVIDER="http://${BEACON_DOMAIN}:3500"
 
 case "$NETWORK" in
 "hoodi")
@@ -49,8 +49,8 @@ esac
 FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
-    --beacon-rpc-provider=$BEACON_RPC_PROVIDER$( [ -n "${BACKUP_BEACON_NODES}" ] && echo ",${BACKUP_BEACON_NODES}" ) \
-    --beacon-rpc-gateway-provider=$BEACON_RPC_GATEWAY_PROVIDER \
+    --beacon-rpc-provider=$BEACON_RPC_PROVIDER \
+    --beacon-rest-api-provider=$BEACON_REST_API_PROVIDER$( [ -n "${BACKUP_BEACON_NODES}" ] && echo ",${BACKUP_BEACON_NODES}" ) \
     --validators-external-signer-url=$SIGNER_API_URL \
     --grpc-gateway-host=0.0.0.0 \
     --grpc-gateway-port=$VALIDATOR_API_PORT \
