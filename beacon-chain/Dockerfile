@@ -10,7 +10,7 @@ RUN mkdir /deps && \
     apt-get --yes install wget
 
 ENV LUKSO_CONFIG_PATH=/configs/lukso \
-    LUKSO_SHARED_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared/dencun \
+    LUKSO_SHARED_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared/pectra \
     SEPOLIA_CONFIG_PATH=/configs/sepolia \
     SEPOLIA_GENESIS_URL=https://raw.githubusercontent.com/eth-clients/sepolia/main/metadata/genesis.ssz
 
