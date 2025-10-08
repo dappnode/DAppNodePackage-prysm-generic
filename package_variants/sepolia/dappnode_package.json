@@ -7,6 +7,6 @@
     "docs": "https://docs.prylabs.network/docs/getting-started"
   },
   "optionalDependencies": {
-    "sepolia-geth.dnp.dappnode.eth": ">=0.1.3"
+    "sepolia-geth.dnp.dappnode.eth": ">=0.1.4"
   }
 }
