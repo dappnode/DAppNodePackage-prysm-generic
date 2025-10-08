@@ -5,8 +5,5 @@
     "homepage": "https://prysmaticlabs.com/",
     "readme": "https://github.com/dappnode/DAppNodePackage-prysm-generic",
     "docs": "https://docs.prylabs.network/docs/getting-started"
-  },
-  "optionalDependencies": {
-    "sepolia-geth.dnp.dappnode.eth": ">=0.1.4"
   }
 }
