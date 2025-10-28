@@ -34,4 +34,3 @@ services:
       VERBOSITY: info
 volumes:
   beacon-chain-data: {}
-  validator-data: {}
