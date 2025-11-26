@@ -46,6 +46,7 @@ FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
     --beacon-rest-api-provider=${BEACON_DOMAIN}:3500 \
+    --beacon-rpc-provider=${BEACON_DOMAIN}:4000 \
     --validators-external-signer-url=$SIGNER_API_URL \
     --http-host=0.0.0.0 \
     --http-port=$VALIDATOR_API_PORT \
