@@ -49,12 +49,12 @@ esac
 FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
-    --beacon-rpc-provider=$BEACON_RPC_PROVIDER \
-    --beacon-rpc-gateway-provider=$BEACON_RPC_GATEWAY_PROVIDER \
+    --beacon-rpc-provider-provider=$BEACON_RPC_PROVIDER \
+    --beacon-rest-api=$BEACON_RPC_GATEWAY_PROVIDER \
     --validators-external-signer-url=$SIGNER_API_URL \
-    --grpc-gateway-host=0.0.0.0 \
-    --grpc-gateway-port=$VALIDATOR_API_PORT \
-    --grpc-gateway-corsdomain=http://0.0.0.0:$VALIDATOR_API_PORT \
+    --http-host=0.0.0.0 \
+    --http-port=$VALIDATOR_API_PORT \
+    --http-corsdomain=http://0.0.0.0:$VALIDATOR_API_PORT \
     --graffiti=$VALID_GRAFFITI \
     --suggested-fee-recipient=$VALID_FEE_RECIPIENT \
     --verbosity=$VERBOSITY \
