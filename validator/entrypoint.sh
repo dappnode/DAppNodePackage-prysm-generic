@@ -23,10 +23,6 @@ MEVBOOST_FLAG=$(get_mevboost_flag "${NETWORK}" "${MEVBOOST_FLAG_KEY}" "${SKIP_ME
 # Example: http://localhost:4000 -> localhost
 BEACON_DOMAIN="$(echo "$BEACON_API_URL" | cut -d'/' -f3 | cut -d':' -f1)"
 
-# Prepare API endpoints (no http:// prefix && add port)
-BEACON_RPC_PROVIDER="${BEACON_DOMAIN}:4000"
-BEACON_RPC_GATEWAY_PROVIDER="${BEACON_DOMAIN}:3500"
-
 case "$NETWORK" in
 "hoodi")
     NETWORK_FLAGS="--hoodi"
@@ -49,8 +45,7 @@ esac
 FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
-    --beacon-rpc-provider=$BEACON_RPC_PROVIDER \
-    --beacon-rest-api=$BEACON_RPC_GATEWAY_PROVIDER \
+    --beacon-rest-api-provider=${BEACON_DOMAIN}:3500 \
     --validators-external-signer-url=$SIGNER_API_URL \
     --http-host=0.0.0.0 \
     --http-port=$VALIDATOR_API_PORT \
