@@ -62,13 +62,14 @@ else
 fi
 
 FLAGS="--accept-terms-of-use \
+  --blob-storage-layout=by-epoch \
   --datadir=$DATA_DIR \
   --jwt-secret=$JWT_FILE_PATH \
   --execution-endpoint=$ENGINE_URL \
   --monitoring-host=0.0.0.0 \
-  --grpc-gateway-host=0.0.0.0 \
-  --grpc-gateway-port=$BEACON_API_PORT \
-  --grpc-gateway-corsdomain=$CORSDOMAIN \
+  --http-host=0.0.0.0 \
+  --http-port=$BEACON_API_PORT \
+  --http-corsdomain=$CORSDOMAIN \
   --rpc-host=0.0.0.0 \
   --verbosity=$VERBOSITY \
   --p2p-tcp-port=$P2P_TCP_PORT \
