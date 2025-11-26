@@ -62,6 +62,7 @@ else
 fi
 
 FLAGS="--accept-terms-of-use \
+  --blob-storage-layout=by-epoch \
   --datadir=$DATA_DIR \
   --jwt-secret=$JWT_FILE_PATH \
   --execution-endpoint=$ENGINE_URL \
