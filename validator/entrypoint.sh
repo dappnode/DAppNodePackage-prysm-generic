@@ -49,7 +49,7 @@ FLAGS="--datadir=$DATA_DIR \
     --validators-external-signer-url=$SIGNER_API_URL \
     --http-host=0.0.0.0 \
     --http-port=$VALIDATOR_API_PORT \
-    --http-corsdomain=http://0.0.0.0:$VALIDATOR_API_PORT \
+    --http-cors-domain=http://0.0.0.0:$VALIDATOR_API_PORT \
     --graffiti=$VALID_GRAFFITI \
     --suggested-fee-recipient=$VALID_FEE_RECIPIENT \
     --verbosity=$VERBOSITY \
