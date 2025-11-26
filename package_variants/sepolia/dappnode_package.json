@@ -1,6 +1,6 @@
 {
   "name": "prysm-sepolia.dnp.dappnode.eth",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "links": {
     "homepage": "https://prysmaticlabs.com/",
     "readme": "https://github.com/dappnode/DAppNodePackage-prysm-generic",
