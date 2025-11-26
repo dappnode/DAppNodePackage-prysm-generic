@@ -49,7 +49,7 @@ esac
 FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
-    --beacon-rpc-provider-provider=$BEACON_RPC_PROVIDER \
+    --beacon-rpc-provider=$BEACON_RPC_PROVIDER \
     --beacon-rest-api=$BEACON_RPC_GATEWAY_PROVIDER \
     --validators-external-signer-url=$SIGNER_API_URL \
     --http-host=0.0.0.0 \
