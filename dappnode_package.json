@@ -2,7 +2,7 @@
   "upstream": [
     {
       "repo": "prysmaticlabs/prysm",
-      "version": "v7.0.1",
+      "version": "v7.1.0",
       "arg": "UPSTREAM_VERSION"
     },
     {
