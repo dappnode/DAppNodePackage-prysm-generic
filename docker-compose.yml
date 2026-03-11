@@ -11,9 +11,8 @@ services:
       - beacon-chain-data:/data
     restart: unless-stopped
     environment:
-      CHECKPOINT_SYNC_URL: ""
       EXTRA_OPTS: ""
-      FEE_RECIPIENT_ADDRESS: ""
+      FEE_RECIPIENT_ADDRESS: "0x0000000000000000000000000000000000000000"
       VERBOSITY: info
       MIN_SYNC_PEERS: "3"
       MAX_PEERS: "70"
@@ -30,7 +29,7 @@ services:
       LOG_TYPE: INFO
       GRAFFITI: validating_from_DAppNode
       EXTRA_OPTS: ""
-      FEE_RECIPIENT_ADDRESS: ""
+      FEE_RECIPIENT_ADDRESS: "0x0000000000000000000000000000000000000000"
       VERBOSITY: info
 volumes:
   beacon-chain-data: {}
