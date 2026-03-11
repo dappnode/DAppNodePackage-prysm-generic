@@ -7,10 +7,11 @@ services:
         P2P_TCP_PORT: 13103
         P2P_UDP_PORT: 12103
     ports:
-      - 13103:13103/tcp
+      - 13103:13103
       - 12103:12103/udp
     environment:
       CORSDOMAIN: "*"
+      CHECKPOINT_SYNC_URL: "https://checkpoint-sync.dappnode.net"
   validator:
     build:
       args:
