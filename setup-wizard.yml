@@ -16,7 +16,7 @@ fields:
       service: beacon-chain
     title: Checkpoint for fast sync
     description: >-
-      To get Prysm up and running in only a few minutes, use the Dappnode Official endpoint for your network (`https://checkpoint-sync.dappnode.net`, `https://checkpoint-sync-hoodi.dappnode.net`, `https://checkpoint-sync-gnosis.dappnode.net`, `https://checkpoint-sync-sepolia.dappnode.net`) or get your checkpoint sync from [Infura](https://infura.io/) (i.e https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@eth2-beacon.infura.io).
+      To get Prysm up and running in only a few minutes, use the Dappnode Official endpoint for your network (`https://checkpoint-sync.dappnode.net`, `https://checkpoint-sync-hoodi.dappnode.net`, `https://checkpoint-sync-gnosis.dappnode.net`, `https://checkpoint-sync-sepolia.dappnode.net`, `https://checkpoint-sync-sepolia.dappnode.net`) or get your checkpoint sync from [Infura](https://infura.io/) (i.e https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@eth2-beacon.infura.io).
       For LUKSO, use their official endpoint (`https://checkpoints.mainnet.lukso.network`).
       *Note - If you are going to provide your own checkpoint sync endpoint, make sure you do not use a slash `/` at the end of the URL.*
     required: false
