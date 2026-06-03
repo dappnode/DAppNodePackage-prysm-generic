@@ -7,10 +7,11 @@ services:
         P2P_TCP_PORT: 14603
         P2P_UDP_PORT: 14603
     ports:
-      - 14603:14603/tcp
+      - 14603:14603
       - 14603:14603/udp
     environment:
       CORSDOMAIN: "*"
+      CHECKPOINT_SYNC_URL: "https://checkpoint-sync-hoodi.dappnode.net"
   validator:
     build:
       args:

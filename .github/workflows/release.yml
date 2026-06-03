@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      execution_client:
+        description: "Execution Client"
+        required: true
+        type: choice
+        options: [geth, nethermind, besu, erigon, reth]
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - "README.md"
+
+jobs:
+  release:
+    uses: dappnode/workflows/.github/workflows/staking-release.yml@master
+    with:
+      package_variant: "hoodi"
+      consensus_client: "prysm"
+      execution_client: ${{ inputs.execution_client || '' }}
+    secrets: inherit
