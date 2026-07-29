@@ -4,7 +4,7 @@ services:
     build:
       context: beacon-chain
       args:
-        UPSTREAM_VERSION: v7.1.7
+        UPSTREAM_VERSION: v7.1.8
         STAKER_SCRIPTS_VERSION: v0.1.2
         DATA_DIR: /data
     volumes:
