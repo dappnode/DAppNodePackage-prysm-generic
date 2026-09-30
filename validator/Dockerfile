@@ -1,15 +1,12 @@
 ARG UPSTREAM_VERSION
 
-FROM debian:bullseye-slim AS builder
+FROM debian:bookworm-slim AS builder
 
 ARG NETWORK
 
-# Use ldd to copy dependencies of grep
-RUN mkdir /deps
-RUN ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /deps || true && \
-  apt-get update && \
-  apt-get --yes install wget && \
-  apt-get clean
+RUN apt-get update && \
+  apt-get --yes install --no-install-recommends ca-certificates wget && \
+  rm -rf /var/lib/apt/lists/*
 
 ENV LUKSO_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared/pectra/config.yaml
 
@@ -19,7 +16,12 @@ RUN if [ "${NETWORK}" = "lukso" ]; then \
   touch /lukso-config.yaml; \
   fi
 
-ARG UPSTREAM_VERSION
+# Match Prysm's Bullseye runtime; this stage does not need APT repositories.
+FROM debian:bullseye-slim AS tools
+
+RUN mkdir /deps && \
+  ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /deps
+
 FROM gcr.io/prysmaticlabs/prysm/validator:${UPSTREAM_VERSION}
 
 ARG NETWORK
@@ -32,9 +34,9 @@ ENV VALIDATOR_API_PORT=3500 \
   LUKSO_CONFIG_PATH=/configs/lukso/shared/config.yaml \
   STAKER_SCRIPTS_URL=https://github.com/dappnode/staker-package-scripts/releases/download/${STAKER_SCRIPTS_VERSION}
 
-COPY --from=builder /bin/sh /bin/sh
-COPY --from=builder /bin/grep /bin/grep
-COPY --from=builder /deps/* /lib/
+COPY --from=tools /bin/sh /bin/sh
+COPY --from=tools /bin/grep /bin/grep
+COPY --from=tools /deps/* /lib/
 COPY --from=builder /lukso-config.yaml ${LUKSO_CONFIG_PATH}
 
 RUN mkdir -p ${WALLET_DIR} $(dirname ${LUKSO_CONFIG_PATH})
