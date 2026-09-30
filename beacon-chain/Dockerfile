@@ -1,13 +1,11 @@
 ARG UPSTREAM_VERSION
-FROM debian:bullseye-slim AS builder
+FROM debian:bookworm-slim AS builder
 
 ARG NETWORK
 
-# Use ldd to copy dependencies of grep
-RUN mkdir /deps && \
-    ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /deps || true && \
-    apt-get update && \
-    apt-get --yes install wget
+RUN apt-get update && \
+    apt-get --yes install --no-install-recommends ca-certificates wget && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV LUKSO_CONFIG_PATH=/configs/lukso \
     LUKSO_SHARED_CONFIG_URL=https://raw.githubusercontent.com/lukso-network/network-configs/main/mainnet/shared/pectra \
@@ -23,7 +21,12 @@ RUN mkdir -p ${LUKSO_CONFIG_PATH} ${SEPOLIA_CONFIG_PATH} && \
     wget ${SEPOLIA_GENESIS_URL} -O ${SEPOLIA_CONFIG_PATH}/genesis.ssz; \
     fi
 
-ARG UPSTREAM_VERSION
+# Match Prysm's Bullseye runtime; this stage does not need APT repositories.
+FROM debian:bullseye-slim AS tools
+
+RUN mkdir /deps && \
+    ldd /bin/grep | tr -s '[:space:]' '\n' | grep '^/' | xargs -I {} cp -v {} /deps
+
 FROM gcr.io/prysmaticlabs/prysm/beacon-chain:${UPSTREAM_VERSION}
 
 ARG NETWORK
@@ -44,9 +47,9 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ADD ${STAKER_SCRIPTS_URL}/consensus_tools.sh /etc/profile.d/
 
-COPY --from=builder /bin/sh /bin/sh
-COPY --from=builder /bin/grep /bin/grep
-COPY --from=builder /deps/* /lib/
+COPY --from=tools /bin/sh /bin/sh
+COPY --from=tools /bin/grep /bin/grep
+COPY --from=tools /deps/* /lib/
 
 COPY --from=builder /configs /configs
 
