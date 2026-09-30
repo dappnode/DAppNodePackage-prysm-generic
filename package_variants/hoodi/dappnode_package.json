@@ -1,16 +1,21 @@
 {
-  "name": "prysm-hoodi.dnp.dappnode.eth",
-  "version": "0.1.7",
-  "links": {
-    "ui": "http://brain.web3signer-hoodi.dappnode",
-    "homepage": "https://prysmaticlabs.com/",
-    "readme": "https://github.com/dappnode/DAppNodePackage-prysm-generic",
-    "docs": "https://docs.prylabs.network/docs/getting-started"
-  },
   "globalEnvs": [
     {
-      "envs": ["MEVBOOST_HOODI"],
-      "services": ["validator", "beacon-chain"]
+      "envs": [
+        "MEVBOOST_HOODI"
+      ],
+      "services": [
+        "validator",
+        "beacon-chain"
+      ]
     }
-  ]
+  ],
+  "links": {
+    "docs": "https://docs.prylabs.network/docs/getting-started",
+    "homepage": "https://prysmaticlabs.com/",
+    "readme": "https://github.com/dappnode/DAppNodePackage-prysm-generic",
+    "ui": "http://brain.web3signer-hoodi.dappnode"
+  },
+  "name": "prysm-hoodi.dnp.dappnode.eth",
+  "version": "0.1.8"
 }
