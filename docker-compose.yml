@@ -21,7 +21,7 @@ services:
     build:
       context: validator
       args:
-        UPSTREAM_VERSION: v7.1.4
+        UPSTREAM_VERSION: v7.2.0
         STAKER_SCRIPTS_VERSION: v0.1.2
         DATA_DIR: /root/.eth2validators
     restart: on-failure
