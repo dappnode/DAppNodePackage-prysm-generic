@@ -42,12 +42,21 @@ case "$NETWORK" in
     ;;
 esac
 
+# StakingBrain adds and removes public keys through the Keymanager API.
+# Reload the current API-managed set on every restart instead of using stale keys.
+REMOTE_KEYS_FILE="${DATA_DIR}/remote-keys.txt"
+if ! mkdir -p "$DATA_DIR" || ! printf '' > "$REMOTE_KEYS_FILE"; then
+    echo "[ERROR - entrypoint] Could not initialize remote public key file: $REMOTE_KEYS_FILE"
+    exit 1
+fi
+
 FLAGS="--datadir=$DATA_DIR \
     --wallet-dir=$WALLET_DIR \
     --monitoring-host=0.0.0.0 \
     --beacon-rest-api-provider=${BEACON_API_URL} \
     --beacon-rpc-provider=${BEACON_DOMAIN}:4000 \
     --validators-external-signer-url=$SIGNER_API_URL \
+    --validators-external-signer-key-file=$REMOTE_KEYS_FILE \
     --http-host=0.0.0.0 \
     --http-port=$VALIDATOR_API_PORT \
     --http-cors-domain=http://0.0.0.0:$VALIDATOR_API_PORT \
