@@ -39,7 +39,7 @@
     {
       "arg": "UPSTREAM_VERSION",
       "repo": "prysmaticlabs/prysm",
-      "version": "v7.2.1"
+      "version": "v7.3.0"
     },
     {
       "arg": "STAKER_SCRIPTS_VERSION",
